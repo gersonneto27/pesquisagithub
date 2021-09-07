@@ -19,17 +19,20 @@
         </div>
     </div>
     <div class="search-list">
-        <h3>Registros Encontrados</h3>
+        <h3>{{ total }} Registros Encontrados</h3>
         <table class="table" id="myTable">
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Versão</th>
+                    <th>Imagem</th>
+                    <th>Seguidores</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let result of results$ | async">
-                    <td>{{result}}</td>
+                    <td>{{result.login}}</td>
+                    <td><img src="{{result.avatar_url}}" alt="image avatar" width="100px" height="100px"></td>
+                    <td>{{url}}</td>
                 </tr>
             </tbody>
         </table>

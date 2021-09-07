@@ -15,8 +15,7 @@ export class LibSeachComponent implements OnInit {
   readonly SEARCH_URL = 'https://api.github.com/';
   results$: Observable<any> | undefined;
   total: number | undefined;
-  login: any;
-  html_url: any;
+  url: any;
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +25,11 @@ export class LibSeachComponent implements OnInit {
   onSearch() {
     let value = this.queryField.value;
     if (value && (value = value.trim()) !== '') {
-      this.results$ = this.http.get(this.SEARCH_URL + 'users/' + value)
+      this.results$ = this.http.get(this.SEARCH_URL + 'search/users?q=' + value + '+in:user')
         .pipe(
-          tap((res: any) => this.login = res.login)
+          tap((res: any) => this.total = res.total_count),
+          map((res: any) => res.items )
         );
     }
   }
-
 }
