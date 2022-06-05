@@ -1,0 +1,17 @@
+html {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 11;
+  background-color: #ED7518 !important;
+  height: 100%;
+  width: 100%;
+}
+
+.app-root {
+  background-color: #ED7518;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: "Roboto", "sans-serif";
+}

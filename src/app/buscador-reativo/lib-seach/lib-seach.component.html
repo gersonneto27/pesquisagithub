@@ -1,41 +1,34 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container search-table">
     <div class="search-box">
         <div class="row">
             <div class="col-md-6">
-                <h5>Search All Fields</h5>
+                <h5>Digite a Hashtag:</h5>
             </div>
             <div class="col-md-9">
                 <input type="text" id="myInput" class="form-control" [formControl]="queryField"
-                    placeholder="Pesquisar Perfil">
+                    placeholder="Pesquisar hashtag">
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-success" (click)="onSearch()">Pesquisar</button>
+                <button type="button" class="btn" (click)="onSearch()">Pesquisar</button>
             </div>
         </div>
     </div>
-    <div class="search-list">
-        <h3>{{ total }} Registros Encontrados</h3>
-        <table class="table" id="myTable">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Imagem</th>
-                    <th>Seguidores</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let result of results$ | async">
-                    <td>{{result.login}}</td>
-                    <td><img src="{{result.avatar_url}}" alt="image avatar" width="100px" height="100px"></td>
-                    <td>{{url}}</td>
-                </tr>
-            </tbody>
-        </table>
-
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- ngfor loop using get dynamic value and ngclass for add acive class -->
+        <div class="carousel-item" *ngFor="let result of results$| async; let i = index" [ngClass]="{'active': i === 1}">
+         <img src={{result.avatar_url}} title={{result.login}}  width="500px" height=""/>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
 </div>
